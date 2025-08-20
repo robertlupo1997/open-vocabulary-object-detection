@@ -1,6 +1,7 @@
 # Open-Vocabulary Object Detection (OVOD) 
 
 [![CI](https://github.com/robertlupo1997/open-vocabulary-object-detection/actions/workflows/smoke.yml/badge.svg?branch=main)](https://github.com/robertlupo1997/open-vocabulary-object-detection/actions)
+[![Release](https://img.shields.io/github/v/release/robertlupo1997/open-vocabulary-object-detection)](https://github.com/robertlupo1997/open-vocabulary-object-detection/releases)
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-yellow.svg)](LICENSE)
 
