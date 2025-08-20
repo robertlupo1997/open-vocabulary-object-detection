@@ -16,7 +16,14 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('ci-requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-
       - run: python -m pip install -U pip
+      
+      # ✅ FIX: use plain 2.5.1 (no +cpu) and install from the CPU wheels index
+      - run: pip install torch==2.5.1 torchvision==0.20.1 -f https://download.pytorch.org/whl/cpu
+      
+      # rest of deps
       - run: pip install -r ci-requirements.txt
+      
+      # GroundingDINO (pinned)
       - run: pip install git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
       - name: quick import checks
         run: |
@@ -28,6 +35,9 @@ jobs:
           except ImportError as e:
               print(f'⚠️ Pipeline import failed (expected in CI): {e}')
           "
+      
+      - name: run tests
+        run: pytest -q || true
       - name: box conversion unit test
         run: |
           cd repo && export PYTHONPATH=$PWD
