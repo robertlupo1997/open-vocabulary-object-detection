@@ -1,0 +1,7 @@
+# Global code ownership
+* @robertlupo1997
+
+# Specific areas
+/.github/ @robertlupo1997
+/repo/ovod/ @robertlupo1997
+/repo/src/ @robertlupo1997

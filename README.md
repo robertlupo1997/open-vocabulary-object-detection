@@ -1,9 +1,6 @@
 # Open-Vocabulary Object Detection (OVOD) 
 
-[![CI](https://github.com/robertlupo1997/open-vocabulary-object-detection/actions/workflows/smoke.yml/badge.svg?branch=main)](https://github.com/robertlupo1997/open-vocabulary-object-detection/actions)
-[![Release](https://img.shields.io/github/v/release/robertlupo1997/open-vocabulary-object-detection)](https://github.com/robertlupo1997/open-vocabulary-object-detection/releases)
-[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-yellow.svg)](LICENSE)
+[![CI](https://github.com/robertlupo1997/open-vocabulary-object-detection/actions/workflows/smoke.yml/badge.svg?branch=main)](https://github.com/robertlupo1997/open-vocabulary-object-detection/actions) [![Release](https://img.shields.io/github/v/release/robertlupo1997/open-vocabulary-object-detection)](https://github.com/robertlupo1997/open-vocabulary-object-detection/releases) [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/) [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-yellow.svg)](LICENSE)
 
 **Production-ready OVOD system combining Grounding DINO + SAM 2 for text-conditioned object detection and segmentation.**
 
@@ -131,7 +128,7 @@ python eval.py --prompt common --box-thr 0.30 --text-thr 0.25  # High precision
 - **SAM-2 not found**: Ensure editable install or local `sam2/` path exists
 - **0.000 mAP**: Now auto-handled via coordinate format detection + aliasing  
 - **Streamlit warnings**: Fixed with `use_container_width=True`
-- **Windows pycocotools**: Use `pip install pycocotools-windows` or WSL for best compatibility
+- **Windows setup**: Use `pip install pycocotools-windows` or WSL (recommended for CUDA workflows)
 
 ## ✅ Status
 

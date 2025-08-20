@@ -87,6 +87,7 @@ data:
 # Create data symlink
 link-data:
 	@echo "🔗 Creating data symlink"
+	@[ -d ../data/coco ] || { echo "⚠️  Put COCO dataset at ./data/coco first (from project root)"; exit 1; }
 	@mkdir -p data
 	@if [ ! -L "data/coco" ]; then \
 		ln -sf "../../data/coco" "data/coco"; \
