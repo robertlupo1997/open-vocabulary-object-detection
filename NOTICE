@@ -7,16 +7,27 @@ This project incorporates code and models from the following third-party sources
    Repository: https://github.com/IDEA-Research/GroundingDINO
    License: Apache License 2.0
    Copyright: IDEA-Research
+   Commit: 856dde20aee659246248e20734ef9ba5214f5e44
+   Usage: Installed as dependency via pip, not modified
    
 2. SAM 2 (Segment Anything Model 2)
    Repository: https://github.com/facebookresearch/segment-anything-2
    License: Apache License 2.0
    Copyright: Meta Platforms, Inc. and affiliates
+   Usage: Imported as library, wrapper implementation only
 
 3. COCO Dataset
    Website: https://cocodataset.org/
    License: Creative Commons Attribution 4.0 License
-   Used for evaluation benchmarks and testing
+   Usage: Evaluation benchmarks only, no redistribution
+   
+4. PyTorch
+   License: BSD-3-Clause
+   Copyright: PyTorch Contributors
+
+LICENSE COMPATIBILITY:
+All dependencies use Apache-2.0 or compatible licenses (BSD, CC BY 4.0).
+This project can be distributed under Apache-2.0 without conflicts.
 
 All third-party components retain their original licenses and copyrights.
 See individual repositories for complete license texts.

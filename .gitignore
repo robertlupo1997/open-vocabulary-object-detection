@@ -179,6 +179,12 @@ models/
 *.safetensors
 *.ckpt
 *.pt
+*.bin
+*.npy
+*.npz
+*.h5
+*.pkl
+*.pickle
 
 # Output directories
 outputs/

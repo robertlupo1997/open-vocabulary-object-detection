@@ -23,20 +23,19 @@
 conda env create -f env-ovod.yml
 conda activate ovod
 
-# Install GroundingDINO (required dependency)
-pip install git+https://github.com/IDEA-Research/GroundingDINO.git
+# Install GroundingDINO (pinned for stability)
+pip install git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
 
 # Alternative: manual setup
 # conda create -n ovod python=3.10 -y && conda activate ovod
 # pip install -r requirements.lock.txt
-# pip install git+https://github.com/IDEA-Research/GroundingDINO.git
+# pip install git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
 
 # 1) Data preparation  
 make link-data          # expects data/coco at project root; creates repo/data/coco -> ../../data/coco
 
-# 2) Run demo
-cd repo && export PYTHONPATH=$PWD
-streamlit run demo_app.py
+# 2) Quick demo (one-liner)
+cd repo && export PYTHONPATH=$PWD && streamlit run demo_app.py
 
 <!-- Live demo (add your Streamlit URL here when deployed)
 [🚀 Live Demo](https://your-demo-url.example)
@@ -65,6 +64,19 @@ python eval.py --max-images 200 --prompt common --box-thr 0.25 --text-thr 0.20 -
 - **SAM 2**: High-quality segmentation masks
 - **Auto Format Detection**: Handles varying coordinate formats
 - **Smart Aliasing**: Maps "car bike" → "bicycle", "motorbike" → "motorcycle"
+
+## 📋 Model Zoo
+
+| Model | Config | FPS (RTX 3070) | COCO mAP | Notes |
+|-------|--------|----------------|----------|-------|
+| GroundingDINO | SwinT-OGC | ~3.8 | Varies by prompt | Text-conditioned detection |
+| SAM 2 | Hiera-Small | ~12-15 | N/A | Segmentation only |
+| **OVOD Pipeline** | **Combined** | **~2-4** | **0.001+** | **End-to-end system** |
+
+**Tested Configurations:**
+- GroundingDINO: `groundingdino_swint_ogc.pth` 
+- SAM 2: `sam2_hiera_small.pt`
+- Hardware: RTX 3070, CUDA 11.8+
 
 ## ⚡ Performance
 
