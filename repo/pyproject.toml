@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ovod"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.8.0",
+    "torchvision>=0.23.0",
+    "numpy>=2.1.0",
+    "pillow>=11.0.0",
+    "opencv-python>=4.10.0",
+    "streamlit>=1.48.0",
+    "supervision>=0.26.0",
+    "tqdm>=4.67.0",
+    "pycocotools>=2.0.10",
+    "einops>=0.8.0",
+    "timm>=1.0.0",
+    "ultralytics>=8.3.0",
+    "imageio[ffmpeg]>=2.37.0",
+    "requests>=2.28.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+packages = ["ovod"]

@@ -1,0 +1,33 @@
+# Core ML frameworks
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.30.0
+timm>=0.9.0
+
+# Computer vision
+opencv-python>=4.8.0
+pillow>=9.5.0
+
+# Object detection utilities  
+supervision>=0.16.0
+pycocotools>=2.0.6
+
+# Web demo
+streamlit>=1.25.0
+matplotlib>=3.7.0
+
+# Utilities
+numpy>=1.24.0
+tqdm>=4.65.0
+pyyaml>=6.0
+addict>=2.4.0
+
+# Development and testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Data handling
+pandas>=2.0.0
+requests>=2.31.0

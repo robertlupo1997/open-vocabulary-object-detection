@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(.venv/Scripts/pip install:*)",
+      "Bash(\"C:\\Users\\Trey\\anaconda3\\_conda.exe\" run:*)",
+      "Bash(cp:*)",
+      "Bash(true)",
+      "Bash(echo:*)",
+      "WebSearch",
+      "Bash(wsl:*)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(find:*)",
+      "Bash(conda activate:*)",
+      "Bash(python:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
