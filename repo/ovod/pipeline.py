@@ -1,6 +1,7 @@
 """
 OVOD Pipeline: Open-Vocabulary Object Detection combining Grounding DINO + SAM 2
 """
+import os
 import time
 import torch
 import numpy as np
@@ -9,9 +10,14 @@ import cv2
 from PIL import Image
 
 from src.detector import GroundingDINODetector
-from src.segmenter import SAM2Segmenter  
 from src.nms import filter_detections
 from src.prompts import prompt_processor
+
+# Conditional SAM2 import for CI compatibility
+if os.getenv("OVOD_SKIP_SAM2") == "1":
+    SAM2Segmenter = None
+else:
+    from src.segmenter import SAM2Segmenter
 
 
 class OVODPipeline:
@@ -48,11 +54,16 @@ class OVODPipeline:
             
         self.detector = GroundingDINODetector(**detector_kwargs)
         
-        self.segmenter = SAM2Segmenter(
-            model_cfg=sam2_config,
-            checkpoint_path=sam2_checkpoint,
-            device=device
-        )
+        # Initialize SAM2 segmenter only if not skipped
+        if SAM2Segmenter is not None:
+            self.segmenter = SAM2Segmenter(
+                model_cfg=sam2_config,
+                checkpoint_path=sam2_checkpoint,
+                device=device
+            )
+        else:
+            print("⚠️ SAM2 segmenter skipped (OVOD_SKIP_SAM2=1)")
+            self.segmenter = None
         
         print(f"✅ OVOD Pipeline initialized on {device}")
         self._loaded = False

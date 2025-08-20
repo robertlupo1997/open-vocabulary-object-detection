@@ -3,6 +3,8 @@ on: [push, pull_request]
 jobs:
   smoke:
     runs-on: ubuntu-latest
+    env:
+      OVOD_SKIP_SAM2: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -11,7 +13,7 @@ jobs:
       - run: pip install -r ci-requirements.txt
       - name: quick import checks
         run: |
-          cd repo && export PYTHONPATH=$PWD && export OVOD_SKIP_SAM2=1
+          cd repo && export PYTHONPATH=$PWD
           python -c "
           try:
               from ovod.pipeline import OVODPipeline

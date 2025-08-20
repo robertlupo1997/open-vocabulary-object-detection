@@ -22,9 +22,13 @@
 conda env create -f env-ovod.yml
 conda activate ovod
 
+# Install GroundingDINO (required dependency)
+pip install git+https://github.com/IDEA-Research/GroundingDINO.git
+
 # Alternative: manual setup
 # conda create -n ovod python=3.10 -y && conda activate ovod
 # pip install -r requirements.lock.txt
+# pip install git+https://github.com/IDEA-Research/GroundingDINO.git
 
 # 1) Data preparation  
 make link-data          # expects data/coco at project root; creates repo/data/coco -> ../../data/coco
@@ -106,6 +110,8 @@ python eval.py --prompt common --box-thr 0.30 --text-thr 0.25  # High precision
 - **Box Formats**: Detector outputs vary. `eval.py` auto-detects and converts to COCO `xywh` pixels.
 - **SAM-2**: Repo submodule or editable install supported; paths auto-discovered.
 - **Data**: Expects COCO val2017 dataset at project root `data/coco/`
+- **CUDA vs CPU**: Performance metrics are for CUDA. CI uses CPU-only PyTorch for compatibility.
+- **Dependencies**: GroundingDINO installed from source for latest features.
 
 ## 🔧 Troubleshooting
 
