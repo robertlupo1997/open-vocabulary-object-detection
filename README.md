@@ -131,6 +131,7 @@ python eval.py --prompt common --box-thr 0.30 --text-thr 0.25  # High precision
 - **SAM-2 not found**: Ensure editable install or local `sam2/` path exists
 - **0.000 mAP**: Now auto-handled via coordinate format detection + aliasing  
 - **Streamlit warnings**: Fixed with `use_container_width=True`
+- **Windows pycocotools**: Use `pip install pycocotools-windows` or WSL for best compatibility
 
 ## ✅ Status
 

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use OVOD, please cite it as below."
+title: "Open-Vocabulary Object Detection (OVOD)"
+version: "0.1.0"
+date-released: "2025-08-20"
+authors:
+  - family-names: Lupo
+    given-names: Robert
+repository-code: "https://github.com/robertlupo1997/open-vocabulary-object-detection"
+license: Apache-2.0
+abstract: "Production-ready OVOD system combining Grounding DINO + SAM 2 for text-conditioned object detection and segmentation with COCO evaluation and Streamlit demo interface."
+keywords:
+  - computer-vision
+  - object-detection
+  - segmentation
+  - grounding-dino
+  - sam2
+  - pytorch
+  - zero-shot
