@@ -1,0 +1,22 @@
+Open-Vocabulary Object Detection (OVOD)
+Copyright 2025 Robert Lupo
+
+This project incorporates code and models from the following third-party sources:
+
+1. Grounding DINO
+   Repository: https://github.com/IDEA-Research/GroundingDINO
+   License: Apache License 2.0
+   Copyright: IDEA-Research
+   
+2. SAM 2 (Segment Anything Model 2)
+   Repository: https://github.com/facebookresearch/segment-anything-2
+   License: Apache License 2.0
+   Copyright: Meta Platforms, Inc. and affiliates
+
+3. COCO Dataset
+   Website: https://cocodataset.org/
+   License: Creative Commons Attribution 4.0 License
+   Used for evaluation benchmarks and testing
+
+All third-party components retain their original licenses and copyrights.
+See individual repositories for complete license texts.

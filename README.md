@@ -33,6 +33,10 @@ make link-data          # expects data/coco at project root; creates repo/data/c
 cd repo && export PYTHONPATH=$PWD
 streamlit run demo_app.py
 
+<!-- Live demo (add your Streamlit URL here when deployed)
+[🚀 Live Demo](https://your-demo-url.example)
+-->
+
 # 3) Evaluation (prompt strategies)
 make eval-50                     # common classes (50 images)
 make eval-person                 # person-only (200 images)  
@@ -117,6 +121,16 @@ python eval.py --prompt common --box-thr 0.30 --text-thr 0.25  # High precision
 - [x] Production Makefile targets
 - [x] Environment locking
 - [x] Performance benchmarks (265ms/img RTX 3070)
+
+## 📜 Third-Party Acknowledgments
+
+This project builds upon excellent work from:
+
+- **[Grounding DINO](https://github.com/IDEA-Research/GroundingDINO)** (Apache-2.0) - Text-conditioned object detection
+- **[SAM 2](https://github.com/facebookresearch/segment-anything-2)** (Apache-2.0) - Segment Anything Model 2
+- **[COCO Dataset](https://cocodataset.org/)** (CC BY 4.0) - Evaluation benchmarks
+
+See [NOTICE](NOTICE) for complete attribution details.
 
 ---
 
