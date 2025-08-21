@@ -13,6 +13,48 @@
 - 🖥️ **Streamlit Demo**: Interactive web interface
 - 🔧 **Production Tools**: Makefile targets, environment locking
 
+## 📓 OVOD Notebook: Explainer & TL;DR
+
+We include a portfolio-grade explainer notebook designed for ML engineers and reviewers:
+
+- **Path:** `notebooks/OVOD_Explainer_TLDR.ipynb`  
+- **What you'll learn:** Architecture (GroundingDINO + SAM2), prompt strategies, evaluation (COCO/mAP), CPU vs GPU trade-offs, and production considerations.  
+- **CPU-safe by default:** The notebook gracefully runs without a GPU. Heavy sections are gated.
+
+### Quickstart (local Jupyter)
+```bash
+# (optional) create/activate a virtualenv
+python -m venv .venv && source .venv/bin/activate  # on Windows: .venv\Scripts\activate
+
+# minimal libs for the CPU-safe path
+python -m pip install --upgrade pip
+python -m pip install jupyter matplotlib pillow numpy
+
+# (optional) if you plan to run heavy sections later:
+# python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+jupyter notebook notebooks/OVOD_Explainer_TLDR.ipynb
+```
+
+### Non-interactive run (papermill)
+```bash
+python -m pip install papermill nbconvert
+papermill notebooks/OVOD_Explainer_TLDR.ipynb notebooks/OVOD_Explainer_TLDR.out.ipynb -p RUN_HEAVY false
+jupyter nbconvert --to html notebooks/OVOD_Explainer_TLDR.out.ipynb
+```
+
+### Outputs
+* The notebook writes artifacts to `notebooks/outputs/` (ignored by git except for a `.gitkeep` placeholder).
+* Keep the repo lean: don't commit rendered images/HTML.
+
+### GPU notes (WSL2 / Linux)
+* If you have NVIDIA drivers + CUDA available and want to run the heavy sections:
+  ```bash
+  # Example CPU wheels; use CUDA wheels if your system supports it
+  python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+  ```
+* In WSL2, verify GPU access with: `python -c "import torch; print(torch.cuda.is_available())"`
+
 ## 🚀 Quickstart
 
 ```bash
