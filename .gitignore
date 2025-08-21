@@ -226,3 +226,10 @@ profiling/
 
 # Claude Code assistant
 .claude/
+
+# Notebook outputs (keep folder, ignore files)
+notebooks/outputs/*
+!notebooks/outputs/.gitkeep
+
+# Jupyter working files
+.ipynb_checkpoints/
