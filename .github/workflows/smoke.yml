@@ -7,44 +7,51 @@ jobs:
       OVOD_SKIP_SAM2: "1"
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
-        with: 
+        id: setup-python
+        with:
           python-version: "3.10"
-      
+
       - name: Ensure pip is installed & updated
         run: python -m ensurepip --upgrade || python -m pip install --upgrade pip
-      
-      - name: Cache pip dependencies
+
+      - name: Upgrade build tools
+        run: python -m pip install --upgrade setuptools wheel
+
+      - name: Cache pip
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('ci-requirements.txt') }}
-          restore-keys: ${{ runner.os }}-pip-
-      
-      - name: Install PyTorch CPU wheels
+          key: ${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-pip-${{ github.ref_name }}-${{ hashFiles('ci-requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-pip-${{ github.ref_name }}-
+            ${{ runner.os }}-pip-
+
+      # 🔑 Install PyTorch first (CPU wheels)
+      - name: Install PyTorch (CPU)
         run: python -m pip install torch==2.5.1 torchvision==0.20.1 -f https://download.pytorch.org/whl/cpu
-      
+
+      - name: Show Python/torch versions
+        run: |
+          python --version
+          python -m pip --version
+          python -c "import torch; print('torch', torch.__version__, 'cuda?', torch.cuda.is_available())"
+
+      # Base deps (torch must NOT be here)
       - name: Install base deps
         run: python -m pip install -r ci-requirements.txt
-      
-      - name: Install GroundingDINO (pinned)
-        run: python -m pip install git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
-      # Quick import checks
-      - name: quick import checks
+
+      # Avoid re-resolving deps; pin the commit
+      - name: Install GroundingDINO (pinned, no deps)
+        run: python -m pip install --no-deps git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
+
+      - name: Quick import check
         run: |
           cd repo && export PYTHONPATH=$PWD
-          python -c "
-          try:
-              from ovod.pipeline import OVODPipeline
-              print('OVODPipeline import: OK')
-          except Exception as e:
-              print('⚠️ OVODPipeline import issue:', e)
-          "
-      
-      # Run tests (don't fail the job yet)
-      - name: run tests
-        run: pytest -q || true
-      - name: box conversion unit test
+          python -c "from ovod.pipeline import OVODPipeline; print('OVODPipeline import OK')"
+
+      - name: Box conversion unit test
         run: |
           cd repo && export PYTHONPATH=$PWD
           python -c "
@@ -54,7 +61,8 @@ jobs:
           assert w > 0 and h > 0, f'Invalid box conversion: {x},{y},{w},{h}'
           print('✅ Box conversion test passed')
           "
-      - name: eval script syntax
+
+      - name: Syntax checks
         run: |
           cd repo && python -m py_compile eval.py demo_app.py
           echo "✅ Python syntax checks passed"
