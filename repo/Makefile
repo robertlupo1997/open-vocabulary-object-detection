@@ -26,8 +26,6 @@ help:
 	@echo "  clean     - Clean up cache and temporary files"
 	@echo "  lint      - Run code linting and formatting"
 	@echo "  test      - Run basic functionality tests"
-	@echo "  test-unit - Run unit tests with pytest"
-	@echo "  test-e2e  - Run e2e tests with Playwright (requires display)"
 	@echo ""
 	@echo "Environment:"
 	@echo "  CONDA_ENV - Conda environment name (default: ovod)"
@@ -135,15 +133,6 @@ test:
 	@if [ -d "data/coco/val2017" ]; then echo "✅ COCO data available"; else echo "⚠️  COCO data missing"; fi
 	@if [ -d "weights" ]; then echo "✅ Weights directory exists"; else echo "⚠️  Weights directory missing"; fi
 
-# Run unit tests
-test-unit:
-	@echo "🧪 Running unit tests"
-	@cd .. && $(CONDA_ACTIVATE) && pytest tests/ -v -m "not slow"
-
-# Run e2e tests (requires display)
-test-e2e:
-	@echo "🎭 Running e2e tests with Playwright"
-	@cd .. && $(CONDA_ACTIVATE) && python run_e2e_tests.py
 
 # Code linting and formatting  
 lint:
