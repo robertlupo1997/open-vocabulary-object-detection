@@ -8,18 +8,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: "3.10" }
+        with: 
+          python-version: "3.10"
+      
+      # Bootstrap pip with multiple fallbacks
+      - name: Bootstrap pip 
+        run: |
+          python --version
+          python -c "import sys; print('Python executable:', sys.executable)"
+          # Try multiple methods to ensure pip is available
+          python -m ensurepip --default-pip || true
+          python -m ensurepip --upgrade || true
+          python -c "import pip; print('pip available')" || (echo "Installing pip manually" && python -m ensurepip --default-pip)
+      
       - name: Cache pip dependencies
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('ci-requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-
-      # Ensure pip is installed before any package installations
-      - name: Ensure pip is installed
-        run: python -m ensurepip --upgrade || python -m pip install --upgrade pip
       
-      # Double-check pip upgrade
+      # Upgrade pip
       - name: Upgrade pip
         run: python -m pip install --upgrade pip
       

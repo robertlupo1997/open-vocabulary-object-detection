@@ -3,4 +3,7 @@ opencv-python-headless==4.10.0.84
 pytest
 transformers
 timm
+playwright
+requests
+streamlit
 # Note: PyTorch and GroundingDINO installed separately in CI workflow
